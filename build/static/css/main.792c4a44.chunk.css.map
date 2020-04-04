@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,YACE,WAAY,CACZ,wBACF,CAEA,cACE,SAAU,CACV,wBACF","file":"main.792c4a44.chunk.css","sourcesContent":[".successful {\n  color: green;\n  background-color: lightgray;\n}\n\n.unsuccessful {\n  color: red;\n  background-color: lightgray;\n}\n"]}

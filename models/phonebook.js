@@ -16,8 +16,7 @@ mongoose
 
 const phonebookSchema = new mongoose.Schema({
   name: String,
-  number: String,
-  date: Date
+  number: String
 });
 
 phonebookSchema.set('toJSON', {

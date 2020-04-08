@@ -34,6 +34,7 @@ app.get('/info', (req, res, next) => {
   Person.find({})
     .then(persons => {
       res.send(`<div>This Phonebook has info for ${persons.length} people.</div>
+
   
     ${new Date()}`);
     })
@@ -67,7 +68,7 @@ const generateID = () => {
   return maxId + 1;
 };
 
-app.post('/api/persons', (req, res) => {
+app.post('/api/persons', (req, res, next) => {
   const body = req.body;
 
   if (!body.name || !body.number) {
@@ -78,13 +79,16 @@ app.post('/api/persons', (req, res) => {
 
   const person = new Person({
     name: body.name,
-    number: body.number,
-    date: new Date()
+    number: body.number
   });
 
-  person.save().then(savedPerson => {
-    res.json(savedPerson.toJSON());
-  });
+  person
+    .save()
+    .then(savedPerson => savedPerson.toJSON())
+    .then(savedAndFormattedPerson => {
+      res.json(savedAndFormattedPerson.toJSON());
+    })
+    .catch(error => next(error));
 });
 
 app.put('/api/persons/:id', (req, res, next) => {
@@ -114,6 +118,8 @@ const errorHandler = (error, req, res, next) => {
     return res
       .status(400)
       .send({ status: 'error', message: 'malfunctioned id' });
+  } else if (error.name === 'ValidationError') {
+    return res.status(400).send({ status: 'error', message: error.message });
   }
   next(error);
 };

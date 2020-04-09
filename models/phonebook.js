@@ -20,12 +20,12 @@ const phonebookSchema = new mongoose.Schema({
   name: { type: String, minlength: 3, unique: true, required: true },
   number: {
     type: String,
-    minlength: 5,
-    maxlength: 12,
+    minlength: 8,
     unique: true,
     required: true
   }
 });
+
 phonebookSchema.plugin(uniqueValidator);
 
 phonebookSchema.set('toJSON', {

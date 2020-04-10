@@ -2,4 +2,4 @@
 
 # Online application
 
-https://radiant-sea-02044.herokuapp.com/api/persons
+https://radiant-sea-02044.herokuapp.com
